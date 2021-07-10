@@ -1,5 +1,8 @@
 # Client Push
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/mhzawadi/docker-notify_push/build%20our%20image%20for%20latest?label=Docker%20Latest)
+![Docker Pulls](https://img.shields.io/docker/pulls/mhzawadi/notify_push)
+
 Update notifications for nextcloud clients
 
 ## About
