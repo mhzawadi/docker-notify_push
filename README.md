@@ -26,4 +26,58 @@ This app requires a redis server to be setup and for nextcloud to be configured 
 
 ## Docker run
 
+You can use this with both a standalone docker host or a docker swarm, see below for both.
 
+```
+docker run --rm -it -p 7867:7867 mhzawadi/notify_push
+```
+
+````
+version: '3.5'
+
+# docker stack deploy --compose-file this-file.yml
+
+configs:
+  nextcloud_config.php:
+    external: true
+
+volumes:
+  nextcloud:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: '/path/to/your/data/'
+
+services:
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == worker]
+      labels:
+        - traefik.enable=false
+  notify_push:
+    image: mhzawadi/notify_push
+    ports:
+      - "7867:7867"
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == worker]
+      labels:
+        - traefik.enable=false
+    configs:
+      - source: nextcloud_config.php
+        target: /etc/nc_config.php
+        uid: "0"
+        gid: "0"
+        mode: 0444
+    volumes:
+      - nextcloud:/data
+```
