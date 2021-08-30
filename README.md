@@ -36,6 +36,8 @@ docker run --rm -it -p 7867:7867 mhzawadi/notify_push
 version: '3.5'
 
 # docker stack deploy --compose-file this-file.yml
+# you will need to import your nextcoud config into 
+# docker swarm for this to work
 
 configs:
   nextcloud_config.php:
