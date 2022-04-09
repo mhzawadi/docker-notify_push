@@ -4,10 +4,6 @@ on:
   push:
     branches: dev
 
-  repository_dispatch:
-    # this event is submited via github.com/bots-house/github-actions-upstream-watch
-    types: upstream_commit
-
 jobs:
   build:
     runs-on: ubuntu-latest
