@@ -6,7 +6,7 @@ RUN apk update && \
 	rm -f /var/cache/apk/*;
 
 ENV NOTIFY_SOURCE="https://github.com/nextcloud/notify_push/releases/download" \
-    NOTIFY_VERSION="0.5.2"
+    NOTIFY_VERSION="0.6.0"
 
 COPY start.sh /bin/
 
